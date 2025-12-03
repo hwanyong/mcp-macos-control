@@ -80,7 +80,7 @@ First-time execution requires MacOS permissions:
   "mcpServers": {
     "macos-control": {
       "command": "npx",
-      "args": ["mcp-macos-control"]
+      "args": ["mcp-macos-control@latest"]
     }
   }
 }
@@ -110,7 +110,7 @@ Add to `~/.continue/config.json`:
         "transport": {
           "type": "stdio",
           "command": "npx",
-          "args": ["mcp-macos-control"]
+          "args": ["mcp-macos-control@latest"]
         }
       }
     ]
@@ -144,7 +144,7 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
   "mcpServers": {
     "macos-control": {
       "command": "npx",
-      "args": ["mcp-macos-control"]
+      "args": ["mcp-macos-control@latest"]
     }
   }
 }

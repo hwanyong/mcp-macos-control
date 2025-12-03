@@ -37,7 +37,7 @@ npm link
   "mcpServers": {
     "macos-control": {
       "command": "npx",
-      "args": ["mcp-macos-control"]
+      "args": ["mcp-macos-control@latest"]
     }
   }
 }
@@ -57,7 +57,7 @@ Config file: `~/.continue/config.json`
         "transport": {
           "type": "stdio",
           "command": "npx",
-          "args": ["mcp-macos-control"]
+          "args": ["mcp-macos-control@latest"]
         }
       }
     ]
@@ -74,7 +74,7 @@ Config file: `~/Library/Application Support/Claude/claude_desktop_config.json`
   "mcpServers": {
     "macos-control": {
       "command": "npx",
-      "args": ["mcp-macos-control"]
+      "args": ["mcp-macos-control@latest"]
     }
   }
 }
