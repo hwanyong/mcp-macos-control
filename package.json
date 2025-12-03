@@ -30,12 +30,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/mcp-macos-control.git"
+    "url": "https://github.com/hwanyong/mcp-macos-control.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/mcp-macos-control/issues"
+    "url": "https://github.com/hwanyong/mcp-macos-control/issues"
   },
-  "homepage": "https://github.com/yourusername/mcp-macos-control#readme",
+  "homepage": "https://github.com/hwanyong/mcp-macos-control#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.24.1",
     "active-win": "^8.0.0",
