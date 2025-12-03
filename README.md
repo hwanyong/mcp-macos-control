@@ -19,24 +19,77 @@ AI 에이전트가 키보드 입력, 마우스 컨트롤, 클립보드 제어, �
 
 ## 설치
 
-### NPM 패키지로 설치 (전역)
+### 방법 1: NPX로 바로 실행 (권장) ✨
+
+설치 없이 바로 사용:
 ```bash
-npm install -g mcp-macos-control
+npx github:hwanyong/mcp-macos-control
 ```
 
-### 로컬 개발용 설치
+> NPM 배포 후에는 더 짧게:
+> ```bash
+> npx mcp-macos-control
+> ```
+
+### 방법 2: NPM 전역 설치
+
 ```bash
-git clone <your-repo>
+npm install -g github:hwanyong/mcp-macos-control
+```
+
+설치 후 실행:
+```bash
+mcp-macos-control
+```
+
+### 방법 3: 로컬 개발용 설치
+
+```bash
+git clone https://github.com/hwanyong/mcp-macos-control.git
 cd mcp-macos-control
 npm install
 npm link
 ```
 
+## 실행
+
+### 직접 실행
+```bash
+# NPX 사용 (설치 불필요)
+npx github:hwanyong/mcp-macos-control
+
+# 또는 전역 설치 후
+mcp-macos-control
+
+# 또는 로컬 개발
+node index.cjs
+```
+
+### 권한 설정
+
+처음 실행 시 macOS 권한 필요:
+1. **접근성(Accessibility)**: 키보드/마우스 제어
+   - `시스템 설정 > 개인 정보 보호 및 보안 > 접근성`
+2. **화면 녹화(Screen Recording)**: 스크린샷 캡처
+   - `시스템 설정 > 개인 정보 보호 및 보안 > 화면 녹화`
 
 ## VSCode AI Agent 설정
 
 ### Cline 확장
-MCP 설정에 추가:
+
+**방법 1: NPX 사용 (설치 불필요)**
+```json
+{
+  "mcpServers": {
+    "macos-control": {
+      "command": "npx",
+      "args": ["github:hwanyong/mcp-macos-control"]
+    }
+  }
+}
+```
+
+**방법 2: 전역 설치 후 사용**
 ```json
 {
   "mcpServers": {
@@ -48,7 +101,27 @@ MCP 설정에 추가:
 ```
 
 ### Continue.dev 확장
+
+**방법 1: NPX 사용**
 `~/.continue/config.json`에 추가:
+```json
+{
+  "experimental": {
+    "modelContextProtocolServers": [
+      {
+        "name": "macos-control",
+        "transport": {
+          "type": "stdio",
+          "command": "npx",
+          "args": ["github:hwanyong/mcp-macos-control"]
+        }
+      }
+    ]
+  }
+}
+```
+
+**방법 2: 전역 설치 후**
 ```json
 {
   "experimental": {
@@ -66,7 +139,21 @@ MCP 설정에 추가:
 ```
 
 ### Claude Desktop
+
+**방법 1: NPX 사용**
 `~/Library/Application Support/Claude/claude_desktop_config.json`에 추가:
+```json
+{
+  "mcpServers": {
+    "macos-control": {
+      "command": "npx",
+      "args": ["github:hwanyong/mcp-macos-control"]
+    }
+  }
+}
+```
+
+**방법 2: 전역 설치 후**
 ```json
 {
   "mcpServers": {
