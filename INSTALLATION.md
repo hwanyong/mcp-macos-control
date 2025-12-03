@@ -5,13 +5,13 @@
 ### 1️⃣ Install via NPM (Global)
 
 ```bash
-npm install -g mcp-macos-control
+npm install -g mcp-macos-control@latest
 ```
 
 ### 2️⃣ Run via NPX (No Install)
 
 ```bash
-npx mcp-macos-control
+npx mcp-macos-control@latest
 ```
 
 ### 3️⃣ Local Installation (For Development)

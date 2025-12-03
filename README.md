@@ -25,13 +25,13 @@ It provides capabilities for keyboard input, mouse control, clipboard management
 
 Use immediately without installation:
 ```bash
-npx mcp-macos-control
+npx mcp-macos-control@latest
 ```
 
 ### Method 2: Global NPM Installation
 
 ```bash
-npm install -g mcp-macos-control
+npm install -g mcp-macos-control@latest
 ```
 
 Run after installation:
@@ -53,7 +53,7 @@ npm link
 ### Direct Execution
 ```bash
 # Using NPX (Recommended)
-npx mcp-macos-control
+npx mcp-macos-control@latest
 
 # Or after global installation
 mcp-macos-control
