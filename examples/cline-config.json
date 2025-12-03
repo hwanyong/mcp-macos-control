@@ -1,7 +1,10 @@
 {
     "mcpServers": {
         "macos-control": {
-            "command": "mcp-macos-control"
+            "command": "npx",
+            "args": [
+                "mcp-macos-control"
+            ]
         }
     }
 }

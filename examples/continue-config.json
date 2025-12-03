@@ -5,7 +5,10 @@
                 "name": "macos-control",
                 "transport": {
                     "type": "stdio",
-                    "command": "mcp-macos-control"
+                    "command": "npx",
+                    "args": [
+                        "mcp-macos-control"
+                    ]
                 }
             }
         ]

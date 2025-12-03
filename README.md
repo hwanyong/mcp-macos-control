@@ -23,18 +23,13 @@ AI 에이전트가 키보드 입력, 마우스 컨트롤, 클립보드 제어, �
 
 설치 없이 바로 사용:
 ```bash
-npx github:hwanyong/mcp-macos-control
+npx mcp-macos-control
 ```
-
-> NPM 배포 후에는 더 짧게:
-> ```bash
-> npx mcp-macos-control
-> ```
 
 ### 방법 2: NPM 전역 설치
 
 ```bash
-npm install -g github:hwanyong/mcp-macos-control
+npm install -g mcp-macos-control
 ```
 
 설치 후 실행:
@@ -55,8 +50,8 @@ npm link
 
 ### 직접 실행
 ```bash
-# NPX 사용 (설치 불필요)
-npx github:hwanyong/mcp-macos-control
+# NPX 사용 (설치 불필요) - 권장
+npx mcp-macos-control
 
 # 또는 전역 설치 후
 mcp-macos-control
@@ -77,13 +72,13 @@ node index.cjs
 
 ### Cline 확장
 
-**방법 1: NPX 사용 (설치 불필요)**
+**방법 1: NPX 사용 (설치 불필요) - 권장**
 ```json
 {
   "mcpServers": {
     "macos-control": {
       "command": "npx",
-      "args": ["github:hwanyong/mcp-macos-control"]
+      "args": ["mcp-macos-control"]
     }
   }
 }
@@ -102,7 +97,7 @@ node index.cjs
 
 ### Continue.dev 확장
 
-**방법 1: NPX 사용**
+**방법 1: NPX 사용 - 권장**
 `~/.continue/config.json`에 추가:
 ```json
 {
@@ -113,7 +108,7 @@ node index.cjs
         "transport": {
           "type": "stdio",
           "command": "npx",
-          "args": ["github:hwanyong/mcp-macos-control"]
+          "args": ["mcp-macos-control"]
         }
       }
     ]
@@ -140,14 +135,14 @@ node index.cjs
 
 ### Claude Desktop
 
-**방법 1: NPX 사용**
+**방법 1: NPX 사용 - 권장**
 `~/Library/Application Support/Claude/claude_desktop_config.json`에 추가:
 ```json
 {
   "mcpServers": {
     "macos-control": {
       "command": "npx",
-      "args": ["github:hwanyong/mcp-macos-control"]
+      "args": ["mcp-macos-control"]
     }
   }
 }

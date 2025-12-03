@@ -1,10 +1,7 @@
 {
     "mcpServers": {
         "macos-control": {
-            "command": "node",
-            "args": [
-                "/absolute/path/to/mcp-macos-control/index.cjs"
-            ]
+            "command": "mcp-macos-control"
         }
     }
 }
