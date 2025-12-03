@@ -1,6 +1,6 @@
 {
   "name": "mcp-macos-control",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "MacOS Control MCP Server - AI-powered keyboard, mouse, and screenshot automation for MCP clients",
   "main": "index.cjs",
   "bin": {
@@ -41,7 +41,6 @@
     "active-win": "^8.0.0",
     "clipboardy": "^5.0.1",
     "robotjs": "^0.6.0",
-    "screenshot-desktop": "^1.15.3",
     "winston": "^3.18.3",
     "zod": "^4.1.13"
   }

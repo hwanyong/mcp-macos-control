@@ -6,7 +6,6 @@ const {
   ListToolsRequestSchema,
 } = require('@modelcontextprotocol/sdk/types.js')
 const robot = require('robotjs')
-const screenshot = require('screenshot-desktop')
 const clipboardy = require('clipboardy').default || require('clipboardy')
 const activeWin = require('active-win')
 const { exec } = require('child_process')
@@ -55,7 +54,7 @@ async function runAppleScript(script) {
 const server = new Server(
   {
     name: 'macos-control-server',
-    version: '2.1.0',
+    version: '2.2.0',
   },
   {
     capabilities: {
@@ -168,16 +167,15 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       // 스크린샷
       {
         name: 'take_screenshot',
-        description: 'Capture the screen and save to a file',
+        description: 'Capture the screen. If filename is provided, saves to file. Otherwise, copies to clipboard.',
         inputSchema: {
           type: 'object',
           properties: {
             filename: {
               type: 'string',
-              description: 'Filename to save screenshot',
+              description: 'Filename to save screenshot (optional). If omitted, screenshot is copied to clipboard.',
             },
           },
-          required: ['filename'],
         },
       },
 
@@ -413,13 +411,20 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       // 스크린샷
       case 'take_screenshot': {
         const { filename } = args
-        validateFilePath(filename)
 
-        const imgBuffer = await screenshot()
-        const filepath = path.resolve(filename)
-        await fs.writeFile(filepath, imgBuffer)
-
-        result = { message: `Screenshot saved to ${filepath}`, path: filepath }
+        if (filename) {
+          // 파일로 저장
+          validateFilePath(filename)
+          const filepath = path.resolve(filename)
+          // -x: 소리 없음
+          await execAsync(`screencapture -x "${filepath}"`)
+          result = { message: `Screenshot saved to ${filepath}`, path: filepath }
+        } else {
+          // 클립보드로 복사
+          // -c: 클립보드로 저장
+          await execAsync('screencapture -c')
+          result = { message: 'Screenshot copied to clipboard' }
+        }
         break
       }
 
