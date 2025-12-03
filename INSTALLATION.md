@@ -1,57 +1,53 @@
 # Installation Guide - MCP MacOS Control
 
-## 설치 방법
+## Installation Methods
 
-### 1️⃣ NPM으로 설치 (전역 설치)
+### 1️⃣ Install via NPM (Global)
 
 ```bash
 npm install -g mcp-macos-control
 ```
 
-### 2️⃣ 로컬에서 설치 (개발용)
+### 2️⃣ Run via NPX (No Install)
 
 ```bash
-cd /Users/uhd/.gemini/antigravity/playground/velvet-pulsar
+npx mcp-macos-control
+```
+
+### 3️⃣ Local Installation (For Development)
+
+```bash
+git clone https://github.com/hwanyong/mcp-macos-control.git
+cd mcp-macos-control
 npm install
 npm link
 ```
 
-## VSCode AI Agent 설정
+## VSCode AI Agent Configuration
 
-### 📦 Cline 확장 설정
+### 📦 Cline Extension
 
-1. VSCode에서 **Cline** 확장 설치
+1. Install **Cline** extension in VSCode
 2. Command Palette (`Cmd+Shift+P`) → `Cline: Open Settings`
-3. MCP Servers 섹션에서 설정:
+3. Add to MCP Servers section:
 
-**전역 설치한 경우:**
+**Using NPX (Recommended):**
 ```json
 {
   "mcpServers": {
     "macos-control": {
-      "command": "mcp-macos-control"
+      "command": "npx",
+      "args": ["mcp-macos-control"]
     }
   }
 }
 ```
 
-**로컬 경로 사용:**
-```json
-{
-  "mcpServers": {
-    "macos-control": {
-      "command": "node",
-      "args": ["/Users/uhd/.gemini/antigravity/playground/velvet-pulsar/index.cjs"]
-    }
-  }
-}
-```
+### 📦 Continue.dev Extension
 
-### 📦 Continue.dev 확장 설정
+Config file: `~/.continue/config.json`
 
-설정 파일 위치: `~/.continue/config.json`
-
-**전역 설치한 경우:**
+**Using NPX (Recommended):**
 ```json
 {
   "experimental": {
@@ -60,7 +56,8 @@ npm link
         "name": "macos-control",
         "transport": {
           "type": "stdio",
-          "command": "mcp-macos-control"
+          "command": "npx",
+          "args": ["mcp-macos-control"]
         }
       }
     ]
@@ -68,93 +65,76 @@ npm link
 }
 ```
 
-**로컬 경로 사용:**
-```json
-{
-  "experimental": {
-    "modelContextProtocolServers": [
-      {
-        "name": "macos-control",
-        "transport": {
-          "type": "stdio",
-          "command": "node",
-          "args": ["/Users/uhd/.gemini/antigravity/playground/velvet-pulsar/index.cjs"]
-        }
-      }
-    ]
-  }
-}
-```
+### 📦 Claude Desktop
 
-### 📦 Claude Desktop 설정
-
-설정 파일 위치: `~/Library/Application Support/Claude/claude_desktop_config.json`
+Config file: `~/Library/Application Support/Claude/claude_desktop_config.json`
 
 ```json
 {
   "mcpServers": {
     "macos-control": {
-      "command": "mcp-macos-control"
+      "command": "npx",
+      "args": ["mcp-macos-control"]
     }
   }
 }
 ```
 
-## 권한 설정
+## Permissions Setup
 
-⚠️ **중요:** MacOS에서 다음 권한을 부여해야 합니다:
+⚠️ **IMPORTANT:** You must grant the following permissions on MacOS:
 
-1. **접근성(Accessibility)** - 마우스/키보드 제어용
-2. **화면 녹화(Screen Recording)** - 스크린샷용
+1. **Accessibility** - For mouse/keyboard control
+2. **Screen Recording** - For screenshots
 
-**설정 경로:**
+**Settings Path:**
 ```
-시스템 설정 > 개인 정보 보호 및 보안 > 접근성/화면 녹화
+System Settings > Privacy & Security > Accessibility / Screen Recording
 ```
 
-사용하는 애플리케이션(VSCode, Terminal 등)에 권한을 부여하세요.
+Grant permissions to the application you are using (VSCode, Terminal, Claude, etc.).
 
-## 테스트
+## Testing
 
-설치 후 테스트:
+Test after installation:
 ```bash
-# 서버가 정상 작동하는지 확인
-echo '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' | mcp-macos-control
+# Verify server is running
+echo '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' | npx mcp-macos-control
 ```
 
-## AI Agent 사용 예시
+## AI Agent Usage Examples
 
-설정 완료 후 AI agent에게 다음과 같이 요청할 수 있습니다:
+After configuration, you can ask the AI agent:
 
 ```
-"현재 화면을 스크린샷으로 찍어줘"
-→ take_screenshot 도구 사용
+"Take a screenshot of the current screen"
+→ Uses take_screenshot tool
 
-"마우스를 화면 중앙으로 이동해줘"
-→ get_screen_size + mouse_move 도구 조합 사용
+"Move mouse to the center of the screen"
+→ Uses get_screen_size + mouse_move tools
 
-"Command+C를 눌러서 복사해줘"
-→ keyboard_press 도구 사용
+"Press Command+C to copy"
+→ Uses keyboard_press tool
 
-"Hello World를 입력해줘"
-→ keyboard_type 도구 사용
+"Type Hello World"
+→ Uses keyboard_type tool
 ```
 
-## 문제 해결
+## Troubleshooting
 
-### 권한 오류
+### Permission Errors
 ```
 Error: Command failed: screencapture...
 ```
-→ 화면 녹화 권한을 확인하세요
+→ Check Screen Recording permissions.
 
-### 서버 연결 실패
+### Server Connection Failed
 ```
 Error: spawn mcp-macos-control ENOENT
 ```
-→ npm link가 제대로 되었는지 확인하거나 전체 경로를 사용하세요
+→ Ensure npm link worked or use npx.
 
-## 업데이트
+## Updates
 
 ```bash
 npm update -g mcp-macos-control

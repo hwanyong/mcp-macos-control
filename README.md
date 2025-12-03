@@ -1,43 +1,45 @@
 # MacOS Control MCP Server
 
-## 개요
-MacOS 시스템을 제어할 수 있는 MCP(Model Context Protocol) 서버입니다. 
-AI 에이전트가 키보드 입력, 마우스 컨트롤, 클립보드 제어, 스크린샷 기능을 사용할 수 있습니다.
+## Overview
+An MCP (Model Context Protocol) server that enables AI agents to control MacOS systems.
+It provides capabilities for keyboard input, mouse control, clipboard management, and screenshot capture.
 
-## ✨ v2.0 새로운 기능
-- 🛡️ **강화된 에러 처리**: 입력 검증, 화면 경계 체크, 상세한 에러 메시지
-- 📋 **클립보드 제어**: 복사, 붙여넣기, 읽기
-- 🎯 **향상된 드래그 앤 드롭**: 부드러운 애니메이션과 속도 제어
-- 📝 **로깅 시스템**: Winston 기반 구조화된 로그, 자동 파일 로테이션
+## ✨ New in v2.2
+- 📸 **Enhanced Screenshot**: Support for both file saving and clipboard copying
+- 🛡️ **Robust Error Handling**: Input validation, screen boundary checks, detailed error messages
+- 📋 **Clipboard Control**: Copy, paste, and read clipboard content
+- 🎯 **Advanced Drag & Drop**: Smooth animation with speed control
+- 📝 **Logging System**: Winston-based structured logging with auto-rotation
 
-## 기능
-- **마우스 제어**: 커서 이동, 클릭, 드래그, 드래그 앤 드롭
-- **키보드 제어**: 텍스트 입력, 키 조합 실행
-- **클립보드 제어**: 복사, 붙여넣기, 읽기
-- **스크린샷**: 화면 캡처 (파일 저장 또는 클립보드 복사)
-- **유틸리티**: 마우스 위치 확인, 화면 크기 확인
+## Features
+- **Mouse Control**: Move, click, drag, drag & drop
+- **Keyboard Control**: Type text, press key combinations
+- **Clipboard Control**: Copy, paste, read
+- **Screenshot**: Capture screen (save to file or copy to clipboard)
+- **Window Management**: List windows, focus app, get active window info
+- **Utilities**: Get mouse position, get screen size
 
-## 설치
+## Installation
 
-### 방법 1: NPX로 바로 실행 (권장) ✨
+### Method 1: Run via NPX (Recommended) ✨
 
-설치 없이 바로 사용:
+Use immediately without installation:
 ```bash
 npx mcp-macos-control
 ```
 
-### 방법 2: NPM 전역 설치
+### Method 2: Global NPM Installation
 
 ```bash
 npm install -g mcp-macos-control
 ```
 
-설치 후 실행:
+Run after installation:
 ```bash
 mcp-macos-control
 ```
 
-### 방법 3: 로컬 개발용 설치
+### Method 3: Local Development
 
 ```bash
 git clone https://github.com/hwanyong/mcp-macos-control.git
@@ -46,33 +48,33 @@ npm install
 npm link
 ```
 
-## 실행
+## Usage
 
-### 직접 실행
+### Direct Execution
 ```bash
-# NPX 사용 (설치 불필요) - 권장
+# Using NPX (Recommended)
 npx mcp-macos-control
 
-# 또는 전역 설치 후
+# Or after global installation
 mcp-macos-control
 
-# 또는 로컬 개발
+# Or for local development
 node index.cjs
 ```
 
-### 권한 설정
+### Permissions
 
-처음 실행 시 macOS 권한 필요:
-1. **접근성(Accessibility)**: 키보드/마우스 제어
-   - `시스템 설정 > 개인 정보 보호 및 보안 > 접근성`
-2. **화면 녹화(Screen Recording)**: 스크린샷 캡처
-   - `시스템 설정 > 개인 정보 보호 및 보안 > 화면 녹화`
+First-time execution requires MacOS permissions:
+1. **Accessibility**: For keyboard/mouse control
+   - `System Settings > Privacy & Security > Accessibility`
+2. **Screen Recording**: For screenshots
+   - `System Settings > Privacy & Security > Screen Recording`
 
-## VSCode AI Agent 설정
+## VSCode AI Agent Configuration
 
-### Cline 확장
+### Cline Extension
 
-**방법 1: NPX 사용 (설치 불필요) - 권장**
+**Method 1: Using NPX (Recommended)**
 ```json
 {
   "mcpServers": {
@@ -84,7 +86,7 @@ node index.cjs
 }
 ```
 
-**방법 2: 전역 설치 후 사용**
+**Method 2: Using Global Install**
 ```json
 {
   "mcpServers": {
@@ -95,10 +97,10 @@ node index.cjs
 }
 ```
 
-### Continue.dev 확장
+### Continue.dev Extension
 
-**방법 1: NPX 사용 - 권장**
-`~/.continue/config.json`에 추가:
+**Method 1: Using NPX (Recommended)**
+Add to `~/.continue/config.json`:
 ```json
 {
   "experimental": {
@@ -116,7 +118,7 @@ node index.cjs
 }
 ```
 
-**방법 2: 전역 설치 후**
+**Method 2: Using Global Install**
 ```json
 {
   "experimental": {
@@ -135,8 +137,8 @@ node index.cjs
 
 ### Claude Desktop
 
-**방법 1: NPX 사용 - 권장**
-`~/Library/Application Support/Claude/claude_desktop_config.json`에 추가:
+**Method 1: Using NPX (Recommended)**
+Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
@@ -148,7 +150,7 @@ node index.cjs
 }
 ```
 
-**방법 2: 전역 설치 후**
+**Method 2: Using Global Install**
 ```json
 {
   "mcpServers": {
@@ -159,15 +161,14 @@ node index.cjs
 }
 ```
 
-> 📁 더 많은 설정 예시는 `examples/` 폴더를 참고하세요.
+> 📁 See `examples/` folder for more configuration examples.
 
+## Available Tools
 
-## 제공되는 도구
-
-### 마우스 제어
+### Mouse Control
 
 #### 1. `mouse_move`
-마우스 커서를 지정된 좌표로 이동합니다.
+Move mouse cursor to specified coordinates.
 ```json
 {
   "x": 100,
@@ -175,8 +176,8 @@ node index.cjs
 }
 ```
 
-### 2. `mouse_click`
-마우스 버튼을 클릭합니다.
+#### 2. `mouse_click`
+Click mouse button.
 ```json
 {
   "button": "left",
@@ -184,8 +185,8 @@ node index.cjs
 }
 ```
 
-### 3. `mouse_drag`
-현재 위치에서 목표 좌표까지 드래그합니다.
+#### 3. `mouse_drag`
+Drag from current position to target coordinates.
 ```json
 {
   "x": 500,
@@ -193,41 +194,8 @@ node index.cjs
 }
 ```
 
-### 4. `keyboard_type`
-텍스트를 입력합니다.
-```json
-{
-  "text": "Hello, World!"
-}
-```
-
-### 5. `keyboard_press`
-키 또는 키 조합을 누릅니다.
-```json
-{
-  "key": "c",
-  "modifiers": ["command"]
-}
-```
-
-### 6. `take_screenshot`
-화면을 캡처하여 파일로 저장합니다.
-```json
-{
-  "filename": "screenshot.png"
-}
-```
-
-### 7. `get_mouse_position`
-현재 마우스 커서 위치를 반환합니다.
-
-### 8. `get_screen_size`
-화면 크기를 반환합니다.
-
-### 새로운 도구 (v2.0)
-
-#### 9. `mouse_drag_drop`
-완전한 드래그 앤 드롭을 수행합니다 (부드러운 애니메이션).
+#### 4. `mouse_drag_drop`
+Perform complete drag and drop with smooth animation.
 ```json
 {
   "fromX": 100,
@@ -238,41 +206,96 @@ node index.cjs
 }
 ```
 
-#### 10. `clipboard_get`
-현재 클립보드 내용을 읽습니다.
-
-#### 11. `clipboard_set`
-클립보드에 텍스트를 저장합니다.
+#### 5. `mouse_scroll`
+Scroll mouse wheel.
 ```json
 {
-  "text": "복사할 텍스트"
+  "direction": "down",
+  "amount": 5
 }
 ```
 
-#### 12. `clipboard_paste`
-클립보드 내용을 붙여넣습니다 (Command+V 시뮬레이션).
-
-## 로그 확인
-
-모든 작업은 `logs/` 디렉토리에 기록됩니다:
-- `logs/combined.log`: 모든 작업 로그
-- `logs/error.log`: 에러만 기록
-
-로그 예시:
-```
-[2025-12-03 01:57:04] [INFO] Tool: clipboard_set - Args: {"text":"Hello"} - Tool succeeded
-[2025-12-03 01:57:04] [ERROR] Tool: mouse_move - Tool failed - Coordinates exceed screen bounds
+#### 6. `mouse_move_path`
+Move mouse through multiple points with smooth interpolation.
+```json
+{
+  "points": [{"x": 100, "y": 100}, {"x": 200, "y": 200}],
+  "duration": 1000
+}
 ```
 
-## 권한 요구사항
+### Keyboard Control
 
-MacOS에서 이 도구를 사용하려면 다음 권한이 필요합니다:
-- **접근성(Accessibility)**: 키보드/마우스 제어
-- **화면 녹화(Screen Recording)**: 스크린샷 캡처
+#### 7. `keyboard_type`
+Type text string.
+```json
+{
+  "text": "Hello, World!"
+}
+```
 
-권한 설정: `시스템 설정 > 개인 정보 보호 및 보안 > 접근성/화면 녹화`
+#### 8. `keyboard_press`
+Press key or key combination.
+```json
+{
+  "key": "c",
+  "modifiers": ["command"]
+}
+```
 
-## 주의사항
-⚠️ 이 도구는 실제 마우스와 키보드 이벤트를 생성합니다. 
-⚠️ AI가 시스템을 제어하므로 신중하게 사용하세요.
-⚠️ 중요한 작업 중에는 사용을 피하세요.
+### Clipboard Control
+
+#### 9. `clipboard_get`
+Get current clipboard content.
+
+#### 10. `clipboard_set`
+Set clipboard content.
+```json
+{
+  "text": "Text to copy"
+}
+```
+
+#### 11. `clipboard_paste`
+Paste clipboard content (Simulates Command+V).
+
+### Screen & Window
+
+#### 12. `take_screenshot`
+Capture screen. If filename is provided, saves to file. Otherwise, copies to clipboard.
+```json
+{
+  "filename": "screenshot.png" // Optional
+}
+```
+
+#### 13. `get_mouse_position`
+Get current mouse cursor position.
+
+#### 14. `get_screen_size`
+Get screen dimensions.
+
+#### 15. `window_list`
+Get list of open windows.
+
+#### 16. `window_get_active`
+Get information about the active window.
+
+#### 17. `window_focus`
+Focus a specific application.
+```json
+{
+  "appName": "Safari"
+}
+```
+
+## Logging
+
+All operations are logged in the `logs/` directory:
+- `logs/combined.log`: All logs
+- `logs/error.log`: Errors only
+
+## Disclaimer
+⚠️ This tool generates real mouse and keyboard events.
+⚠️ Use with caution as AI controls your system.
+⚠️ Avoid using during critical tasks.
