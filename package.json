@@ -4,7 +4,7 @@
   "description": "MacOS Control MCP Server - AI-powered keyboard, mouse, and screenshot automation for MCP clients",
   "main": "index.cjs",
   "bin": {
-    "mcp-macos-control": "./index.cjs"
+    "mcp-macos-control": "index.cjs"
   },
   "scripts": {
     "test": "node test.cjs",
