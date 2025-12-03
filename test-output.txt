@@ -1,0 +1,31 @@
+🚀 Starting MCP Server test...
+
+MacOS Control MCP Server running on stdio
+✅ Connected to MCP server
+
+📋 Available tools (8):
+   - mouse_move: Move mouse cursor to specified coordinates
+   - mouse_click: Click mouse button at current position
+   - mouse_drag: Drag mouse from current position to target coordinates
+   - keyboard_type: Type a string of text
+   - keyboard_press: Press a key or key combination (e.g., "enter", "command+c")
+   - take_screenshot: Capture the screen and save to a file
+   - get_mouse_position: Get the current mouse cursor position
+   - get_screen_size: Get the screen dimensions
+
+🧪 Test 1: Get screen size
+   Result: Screen size: 3840x2160
+
+🧪 Test 2: Get mouse position
+   Result: Mouse position: (1533, 1272)
+
+🧪 Test 3: Move mouse to (100, 100)
+   Result: Mouse moved to (100, 100)
+
+✅ All tests passed!
+
+⚠️  Note: For full testing of keyboard/mouse/screenshot,
+   you need to grant Accessibility and Screen Recording permissions.
+   Go to: System Settings > Privacy & Security > Accessibility/Screen Recording
+
+🔌 Disconnected from server

@@ -1,0 +1,13 @@
+{
+    "experimental": {
+        "modelContextProtocolServers": [
+            {
+                "name": "macos-control",
+                "transport": {
+                    "type": "stdio",
+                    "command": "mcp-macos-control"
+                }
+            }
+        ]
+    }
+}

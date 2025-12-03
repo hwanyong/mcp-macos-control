@@ -1,0 +1,26 @@
+# Test files
+test.cjs
+test-screenshot.cjs
+test-output.txt
+
+# Screenshots
+*.png
+*.jpg
+*.jpeg
+
+# Development files
+.DS_Store
+.vscode/
+.idea/
+
+# Node modules (will be installed by user)
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Environment files
+.env
+.env.local
