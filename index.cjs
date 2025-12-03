@@ -54,7 +54,7 @@ async function runAppleScript(script) {
 const server = new Server(
   {
     name: 'macos-control-server',
-    version: '2.2.1',
+    version: '2.2.2',
   },
   {
     capabilities: {
