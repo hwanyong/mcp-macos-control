@@ -1,6 +1,6 @@
 {
   "name": "mcp-macos-control",
-  "version": "2.2.2",
+  "version": "2.3.0",
   "description": "MacOS Control MCP Server - AI-powered keyboard, mouse, and screenshot automation for MCP clients",
   "main": "index.cjs",
   "bin": {
@@ -8,7 +8,11 @@
   },
   "scripts": {
     "test": "node test.cjs",
-    "test-screenshot": "node test-screenshot.cjs"
+    "test-screenshot": "node test-screenshot.cjs",
+    "install": "node-gyp-build",
+    "prebuild": "prebuildify --napi --strip",
+    "prebuild-arm64": "prebuildify --napi --strip --arch arm64",
+    "prebuild-x64": "prebuildify --napi --strip --arch x64"
   },
   "keywords": [
     "mcp",
@@ -40,8 +44,14 @@
     "@modelcontextprotocol/sdk": "^1.24.1",
     "active-win": "^8.0.0",
     "clipboardy": "^5.0.1",
-    "robotjs": "^0.6.0",
+    "lodash": "^4.17.21",
+    "node-addon-api": "^7.0.0",
+    "node-gyp-build": "^4.6.0",
     "winston": "^3.18.3",
     "zod": "^4.1.13"
-  }
+  },
+  "devDependencies": {
+    "prebuildify": "^6.0.0"
+  },
+  "gypfile": true
 }

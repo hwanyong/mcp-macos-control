@@ -5,7 +5,7 @@ const {
   CallToolRequestSchema,
   ListToolsRequestSchema,
 } = require('@modelcontextprotocol/sdk/types.js')
-const robot = require('robotjs')
+const native = require('node-gyp-build')(__dirname)
 const clipboardy = require('clipboardy').default || require('clipboardy')
 const activeWin = require('active-win')
 const { exec } = require('child_process')
@@ -18,7 +18,7 @@ const execAsync = promisify(exec)
 
 // 헬퍼 함수: 화면 경계 체크
 function validateCoordinates(x, y) {
-  const screenSize = robot.getScreenSize()
+  const screenSize = native.getScreenSize()
 
   if (x < 0 || y < 0) {
     throw new Error(`Coordinates cannot be negative. Got: (${x}, ${y})`)
@@ -326,7 +326,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case 'mouse_move': {
         const { x, y } = args
         validateCoordinates(x, y)
-        robot.moveMouse(x, y)
+        native.moveMouse(x, y)
         result = { message: `Mouse moved to (${x}, ${y})` }
         break
       }
@@ -339,7 +339,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           throw new Error(`Invalid button: ${button}. Must be left, right, or middle.`)
         }
 
-        robot.mouseClick(button, double)
+        native.mouseClick(button, double)
         result = { message: `Mouse ${double ? 'double-' : ''}clicked with ${button} button` }
         break
       }
@@ -347,7 +347,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case 'mouse_drag': {
         const { x, y } = args
         validateCoordinates(x, y)
-        robot.dragMouse(x, y)
+        native.dragMouse(x, y)
         result = { message: `Mouse dragged to (${x}, ${y})` }
         break
       }
@@ -358,8 +358,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         validateCoordinates(toX, toY)
 
         // 시작 위치로 이동
-        robot.moveMouse(fromX, fromY)
-        robot.mouseToggle('down')
+        native.moveMouse(fromX, fromY)
+        native.mouseToggle('down')
 
         // 애니메이션으로 드래그
         const steps = 20
@@ -368,11 +368,11 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         for (let i = 1; i <= steps; i++) {
           const currentX = fromX + ((toX - fromX) * i) / steps
           const currentY = fromY + ((toY - fromY) * i) / steps
-          robot.moveMouse(currentX, currentY)
+          native.moveMouse(currentX, currentY)
           await new Promise((resolve) => setTimeout(resolve, stepDelay))
         }
 
-        robot.mouseToggle('up')
+        native.mouseToggle('up')
         result = { message: `Drag-and-drop from (${fromX}, ${fromY}) to (${toX}, ${toY})` }
         break
       }
@@ -385,7 +385,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           throw new Error('Text must be a non-empty string')
         }
 
-        robot.typeString(text)
+        native.typeString(text)
         result = { message: `Typed: "${text}"` }
         break
       }
@@ -398,9 +398,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         }
 
         if (modifiers.length > 0) {
-          robot.keyTap(key, modifiers)
+          native.keyTap(key, modifiers)
         } else {
-          robot.keyTap(key)
+          native.keyTap(key)
         }
 
         const modStr = modifiers.length > 0 ? modifiers.join('+') + '+' : ''
@@ -448,20 +448,20 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       }
 
       case 'clipboard_paste': {
-        robot.keyTap('v', ['command'])
+        native.keyTap('v', ['command'])
         result = { message: 'Pasted clipboard content (Command+V)' }
         break
       }
 
       // 유틸리티
       case 'get_mouse_position': {
-        const pos = robot.getMousePos()
+        const pos = native.getMousePos()
         result = { position: { x: pos.x, y: pos.y } }
         break
       }
 
       case 'get_screen_size': {
-        const size = robot.getScreenSize()
+        const size = native.getScreenSize()
         result = { size: { width: size.width, height: size.height } }
         break
       }
@@ -495,7 +495,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             break
         }
 
-        robot.scrollMouse(x, y)
+        native.scrollMouse(x, y)
         result = { message: `Scrolled ${direction} by ${amount}` }
         break
       }
@@ -540,7 +540,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             const t = s / segmentSteps
             const currentX = startPoint.x + dx * t
             const currentY = startPoint.y + dy * t
-            robot.moveMouse(currentX, currentY)
+            native.moveMouse(currentX, currentY)
             await new Promise((resolve) => setTimeout(resolve, stepDelay))
           }
         }

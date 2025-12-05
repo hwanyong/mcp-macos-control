@@ -4,7 +4,9 @@
 An MCP (Model Context Protocol) server that enables AI agents to control MacOS systems.
 It provides capabilities for keyboard input, mouse control, clipboard management, and screenshot capture.
 
-## ✨ New in v2.2
+## ✨ New in v2.3
+- 🖥️ **Intel Mac Support**: Full support for Intel-based Macs (x64) via custom native module
+- 🚀 **Zero-Dependency**: Removed `robotjs` dependency for better compatibility and easier installation
 - 📸 **Enhanced Screenshot**: Support for both file saving and clipboard copying
 - 🛡️ **Robust Error Handling**: Input validation, screen boundary checks, detailed error messages
 - 📋 **Clipboard Control**: Copy, paste, and read clipboard content
