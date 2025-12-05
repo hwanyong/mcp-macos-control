@@ -1,6 +1,6 @@
 {
   "name": "mcp-macos-control",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "MacOS Control MCP Server - AI-powered keyboard, mouse, and screenshot automation for MCP clients",
   "main": "index.cjs",
   "bin": {

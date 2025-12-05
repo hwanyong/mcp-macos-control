@@ -166,16 +166,25 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 
       // 스크린샷
       {
-        name: 'take_screenshot',
-        description: 'Capture the screen. If filename is provided, saves to file. Otherwise, copies to clipboard.',
+        name: 'screenshot_to_file',
+        description: 'Take a screenshot and save it to a specific file path',
         inputSchema: {
           type: 'object',
           properties: {
-            filename: {
+            path: {
               type: 'string',
-              description: 'Filename to save screenshot (optional). If omitted, screenshot is copied to clipboard.',
+              description: 'Absolute path to save the screenshot',
             },
           },
+          required: ['path'],
+        },
+      },
+      {
+        name: 'screenshot_to_clipboard',
+        description: 'Take a screenshot and copy it to the clipboard',
+        inputSchema: {
+          type: 'object',
+          properties: {},
         },
       },
 
@@ -409,22 +418,26 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       }
 
       // 스크린샷
-      case 'take_screenshot': {
-        const { filename } = args
+      case 'screenshot_to_file': {
+        const { path: filepath } = args
 
-        if (filename) {
-          // 파일로 저장
-          validateFilePath(filename)
-          const filepath = path.resolve(filename)
-          // -x: 소리 없음
-          await execAsync(`screencapture -x "${filepath}"`)
-          result = { message: `Screenshot saved to ${filepath}`, path: filepath }
-        } else {
-          // 클립보드로 복사
-          // -c: 클립보드로 저장
-          await execAsync('screencapture -c')
-          result = { message: 'Screenshot copied to clipboard' }
+        if (!filepath || typeof filepath !== 'string') {
+          throw new Error('Path must be a non-empty string')
         }
+
+        validateFilePath(filepath)
+        const resolvedPath = path.resolve(filepath)
+
+        // -x: 소리 없음
+        await execAsync(`screencapture -x "${resolvedPath}"`)
+        result = { message: `Screenshot saved to ${resolvedPath}`, path: resolvedPath }
+        break
+      }
+
+      case 'screenshot_to_clipboard': {
+        // -c: 클립보드로 저장, -x: 소리 없음
+        await execAsync('screencapture -c -x')
+        result = { message: 'Screenshot copied to clipboard' }
         break
       }
 
